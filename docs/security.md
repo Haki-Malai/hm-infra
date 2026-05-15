@@ -14,7 +14,8 @@ Terraform creates a repository ruleset for `main` that:
 - Requires branches to be up to date.
 - Blocks branch deletion and force pushes.
 - Requires linear history.
-- Does not define bypass actors.
+- Allows repository admins to bypass, so the owner can recover or publish
+  direct changes when needed.
 
 ## Branch Creation and Pushes
 
@@ -22,7 +23,8 @@ Terraform also creates an all-branches ruleset that:
 
 - Blocks branch creation unless the actor can bypass as a repository admin.
 - Blocks pushes to branches unless the actor can bypass as a repository admin.
-- Still leaves `main` protected by the stricter no-bypass PR/status-check ruleset.
+- Still leaves `main` protected by the stricter PR/status-check ruleset for
+  non-admin actors.
 
 For this personal public repo, public users cannot create upstream branches or
 push. Only the repo owner/admin can create or update non-main branches. Do not
@@ -43,10 +45,9 @@ and `terraform validate`.
 
 ## Workflow Backdoors
 
-Terraform also creates a push ruleset that blocks pushes modifying
-`.github/workflows/*`, `.env*`, `*.tfstate`, and `*.tfvars` after bootstrap.
-Changing workflows later should be treated as a controlled operation through
-reviewed Terraform changes.
+GitHub push rulesets are only available for organization-owned repositories and
+cannot be used by this personal public repository. Workflow changes should stay
+rare, reviewed, and protected by the `main` pull request ruleset.
 
 ## Known Limit
 

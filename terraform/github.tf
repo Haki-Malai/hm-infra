@@ -65,6 +65,12 @@ resource "github_repository_ruleset" "protect_main" {
     }
   }
 
+  bypass_actors {
+    actor_id    = 5
+    actor_type  = "RepositoryRole"
+    bypass_mode = "always"
+  }
+
   rules {
     deletion                = true
     non_fast_forward        = true
@@ -85,28 +91,6 @@ resource "github_repository_ruleset" "protect_main" {
       required_check {
         context = var.required_status_check_context
       }
-    }
-  }
-}
-
-resource "github_repository_ruleset" "restrict_sensitive_paths" {
-  name        = "restrict-sensitive-paths"
-  repository  = var.infrastructure_repository
-  target      = "push"
-  enforcement = "active"
-
-  rules {
-    file_path_restriction {
-      restricted_file_paths = [
-        ".github/workflows/*",
-        ".env*",
-        "*.tfstate",
-        "*.tfvars",
-      ]
-    }
-
-    max_file_size {
-      max_file_size = 10
     }
   }
 }
