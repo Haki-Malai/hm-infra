@@ -13,8 +13,13 @@ resource "github_actions_repository_permissions" "hm_infra" {
 }
 
 resource "github_repository_environment" "production" {
-  repository  = var.infrastructure_repository
-  environment = "production"
+  repository          = var.infrastructure_repository
+  environment         = "production"
+  prevent_self_review = false
+
+  reviewers {
+    users = [70583074]
+  }
 
   deployment_branch_policy {
     protected_branches     = true
