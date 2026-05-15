@@ -14,22 +14,20 @@ Terraform creates a repository ruleset for `main` that:
 - Requires branches to be up to date.
 - Blocks branch deletion and force pushes.
 - Requires linear history.
-- Allows repository admins to bypass, so the owner can recover or publish
-  direct changes when needed.
+- Allows only the `Haki-Malai` user bypass in GitHub, so the owner can recover
+  or publish direct changes when needed.
 
 ## Branch Creation and Pushes
 
 Terraform also creates an all-branches ruleset that:
 
-- Blocks branch creation unless the actor can bypass as a repository admin.
-- Blocks pushes to branches unless the actor can bypass as a repository admin.
+- Blocks branch creation unless the actor is the `Haki-Malai` user bypass.
+- Blocks pushes to branches unless the actor is the `Haki-Malai` user bypass.
 - Still leaves `main` protected by the stricter PR/status-check ruleset for
   non-admin actors.
 
 For this personal public repo, public users cannot create upstream branches or
-push. Only the repo owner/admin can create or update non-main branches. Do not
-grant admin access to collaborators unless they should have the same bypass
-ability.
+push. The `Haki-Malai` user bypass is the only configured ruleset bypass.
 
 ## Deployment
 
@@ -48,6 +46,14 @@ and `terraform validate`.
 GitHub push rulesets are only available for organization-owned repositories and
 cannot be used by this personal public repository. Workflow changes should stay
 rare, reviewed, and protected by the `main` pull request ruleset.
+
+## Provider Gap
+
+GitHub repository rulesets support user-specific bypass actors through the REST
+API, but the Terraform GitHub provider does not currently support `User` as a
+repository ruleset bypass actor. Terraform ignores ruleset bypass actor drift so
+the `Haki-Malai` user bypass can be maintained through the GitHub API without
+being reverted by later applies.
 
 ## Known Limit
 

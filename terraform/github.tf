@@ -40,10 +40,8 @@ resource "github_repository_ruleset" "restrict_branch_writes" {
     }
   }
 
-  bypass_actors {
-    actor_id    = 5
-    actor_type  = "RepositoryRole"
-    bypass_mode = "always"
+  lifecycle {
+    ignore_changes = [bypass_actors]
   }
 
   rules {
@@ -65,10 +63,8 @@ resource "github_repository_ruleset" "protect_main" {
     }
   }
 
-  bypass_actors {
-    actor_id    = 5
-    actor_type  = "RepositoryRole"
-    bypass_mode = "always"
+  lifecycle {
+    ignore_changes = [bypass_actors]
   }
 
   rules {
