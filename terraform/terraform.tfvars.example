@@ -1,0 +1,6 @@
+aws_region                = "us-east-1"
+github_owner             = "Haki-Malai"
+infrastructure_repository = "hm-infra"
+domain_name              = "hakimalai.com"
+github_pages_host        = "haki-malai.github.io"
+
