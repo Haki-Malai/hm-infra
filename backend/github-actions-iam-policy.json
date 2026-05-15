@@ -38,10 +38,19 @@
       "Effect": "Allow",
       "Action": [
         "route53:GetHostedZone",
+        "route53:ListTagsForResource",
         "route53:ListResourceRecordSets",
         "route53:ChangeResourceRecordSets"
       ],
       "Resource": "arn:aws:route53:::hostedzone/Z1028532234LVOB9E3HEK"
+    },
+    {
+      "Sid": "Route53ChangePolling",
+      "Effect": "Allow",
+      "Action": [
+        "route53:GetChange"
+      ],
+      "Resource": "*"
     },
     {
       "Sid": "Route53ListHostedZones",
