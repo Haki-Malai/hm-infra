@@ -19,21 +19,33 @@ resource "aws_route53_record" "apex_aaaa" {
   records = local.github_pages_apex_ipv6
 }
 
-resource "aws_route53_record" "github_pages_subdomain_a" {
-  for_each = local.github_pages_subdomains
-
+resource "aws_route53_record" "qr_a" {
   zone_id = data.aws_route53_zone.primary.zone_id
-  name    = each.value
+  name    = local.github_pages_subdomains.qr
   type    = "A"
   ttl     = 300
   records = local.github_pages_apex_ipv4
 }
 
-resource "aws_route53_record" "github_pages_subdomain_aaaa" {
-  for_each = local.github_pages_subdomains
-
+resource "aws_route53_record" "qr_aaaa" {
   zone_id = data.aws_route53_zone.primary.zone_id
-  name    = each.value
+  name    = local.github_pages_subdomains.qr
+  type    = "AAAA"
+  ttl     = 300
+  records = local.github_pages_apex_ipv6
+}
+
+resource "aws_route53_record" "pacman_a" {
+  zone_id = data.aws_route53_zone.primary.zone_id
+  name    = local.github_pages_subdomains.pacman
+  type    = "A"
+  ttl     = 300
+  records = local.github_pages_apex_ipv4
+}
+
+resource "aws_route53_record" "pacman_aaaa" {
+  zone_id = data.aws_route53_zone.primary.zone_id
+  name    = local.github_pages_subdomains.pacman
   type    = "AAAA"
   ttl     = 300
   records = local.github_pages_apex_ipv6

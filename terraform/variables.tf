@@ -22,33 +22,8 @@ variable "domain_name" {
   default     = "hakimalai.com"
 }
 
-variable "github_pages_host" {
-  description = "Default GitHub Pages host used by custom subdomain CNAME records."
-  type        = string
-  default     = "haki-malai.github.io"
-}
-
-variable "subdomain_sites" {
-  description = "GitHub Pages subdomains managed in Route 53."
-  type = map(object({
-    label      = string
-    repository = string
-  }))
-  default = {
-    qr = {
-      label      = "qr"
-      repository = "qr"
-    }
-    pacman = {
-      label      = "pacman"
-      repository = "pacman.js"
-    }
-  }
-}
-
 variable "required_status_check_context" {
   description = "GitHub check context required before merging to main."
   type        = string
   default     = "Terraform Check"
 }
-

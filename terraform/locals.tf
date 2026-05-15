@@ -14,8 +14,7 @@ locals {
   ]
 
   github_pages_subdomains = {
-    for key, site in var.subdomain_sites :
-    key => "${site.label}.${var.domain_name}"
+    qr     = "qr.${var.domain_name}"
+    pacman = "pacman.${var.domain_name}"
   }
 }
-

@@ -11,8 +11,3 @@ output "managed_domains" {
   }
 }
 
-output "github_pages_host" {
-  description = "GitHub Pages host used for CNAME records."
-  value       = var.github_pages_host
-}
-

@@ -9,12 +9,12 @@ import {
 }
 
 import {
-  to = aws_route53_record.github_pages_subdomain_a["qr"]
+  to = aws_route53_record.qr_a
   id = "Z1028532234LVOB9E3HEK_qr.hakimalai.com_A"
 }
 
 import {
-  to = aws_route53_record.github_pages_subdomain_aaaa["qr"]
+  to = aws_route53_record.qr_aaaa
   id = "Z1028532234LVOB9E3HEK_qr.hakimalai.com_AAAA"
 }
 
