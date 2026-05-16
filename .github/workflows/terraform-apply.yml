@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   terraform-plan:
-    name: Deployment Plan
+    name: Terraform Plan
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     env:
@@ -64,7 +64,7 @@ jobs:
           retention-days: 1
 
   terraform-apply:
-    name: Deployment Apply
+    name: Terraform Apply
     needs: terraform-plan
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
